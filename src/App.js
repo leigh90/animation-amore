@@ -23,15 +23,32 @@ class App extends Component {
       ]
     })
   }
+
+  movieChangedHandler = (event) =>{
+    this.setState({
+      movies:[
+        {title: event.target.value, year:2004},
+        {title:"WALL-E", year:2008},
+        {title:"Shrek",year:2001}
+      ]
+    })
+  }
   render() {
+    const style = {
+      backgroundColor: 'blue',
+      font: 'inherit',
+      border: '3px solid blue',
+      padding: '8px',
+      cursor: 'pointer'
+    }
     return (
       <div className="App">
-        <button onClick={this.switchMovieHandler.bind(this,"Ratatouille")} >New Movie</button>
+        <button style={style} onClick={this.switchMovieHandler.bind(this,"Ratatouille")} >New Movie</button>
         <UserOutput title={this.state.movies[0].title} age={this.state.movies[0].year}/>
-        <UserOutput title={this.state.movies[1].title} age={this.state.movies[1].year}/>
+        <UserOutput title={this.state.movies[1].title} age={this.state.movies[1].year} />
         <UserOutput title={this.state.movies[2].title} age={this.state.movies[2].year}/>
         
-        <UserInput/>
+        <UserInput title={this.state.movies[0].title} age={this.state.movies[0].year} changed={this.movieChangedHandler}/>
         
       </div>
     );
